@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8238629210705233779
+--- !u!1 &5317769841316201744
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 316854334158617899}
-  - component: {fileID: 472687522872719052}
-  - component: {fileID: 8740968787739884436}
-  - component: {fileID: 9077965281500960346}
-  m_Layer: 0
-  m_Name: Mesa 2
-  m_TagString: Untagged
+  - component: {fileID: 8061374666822328175}
+  - component: {fileID: 7151789670067475525}
+  - component: {fileID: 4908533414926826689}
+  - component: {fileID: 8868020038433768447}
+  - component: {fileID: 807330134418622526}
+  m_Layer: 6
+  m_Name: MeleeAtack2
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &316854334158617899
+--- !u!4 &8061374666822328175
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8238629210705233779}
+  m_GameObject: {fileID: 5317769841316201744}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.32, y: 0.8, z: 0}
-  m_LocalScale: {x: 0.4518, y: 0.4518, z: 0.4518}
+  m_LocalRotation: {x: -0, y: -0, z: -0.9495371, w: -0.3136547}
+  m_LocalPosition: {x: 1.608, y: 1.435, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &472687522872719052
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -216.559}
+--- !u!212 &7151789670067475525
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8238629210705233779}
+  m_GameObject: {fileID: 5317769841316201744}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -75,24 +76,24 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 7fd1a26cbefb672448fd74f5a67d2398, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3e2e66f9b6b54e748baf875150129d59, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.94, y: 3.94}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &8740968787739884436
-CircleCollider2D:
+--- !u!70 &4908533414926826689
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8238629210705233779}
+  m_GameObject: {fileID: 5317769841316201744}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -118,25 +119,25 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1.97
---- !u!50 &9077965281500960346
+  m_Offset: {x: -0.036049962, y: 0.12}
+  m_Size: {x: 0.82, y: 0.0001}
+  m_Direction: 0
+--- !u!50 &8868020038433768447
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8238629210705233779}
-  m_BodyType: 0
+  m_GameObject: {fileID: 5317769841316201744}
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 3
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -147,4 +148,20 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!114 &807330134418622526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5317769841316201744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6d6a5f0a1cf29d468d1397bcfb29ada, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sightRange: 4
+  Target: {fileID: 0}
+  hp: 5
+  speed: 1.5

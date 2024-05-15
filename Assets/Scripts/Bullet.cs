@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -16,7 +17,6 @@ public class Bullet : MonoBehaviour
     {
         transform.position += transform.up * speed * Time.deltaTime;
     }
-
     void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Destructible"))
@@ -24,5 +24,7 @@ public class Bullet : MonoBehaviour
             Destroy(collision.gameObject);
         } 
         Destroy(gameObject);
+
     }
+   
 }

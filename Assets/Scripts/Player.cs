@@ -7,8 +7,9 @@ public class Player : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] Transform target;
     [SerializeField] GameObject bulletPrefab;
+    [SerializeField] GameObject ShotLightPrefab;
     [SerializeField] Transform bulletSpawn;
-
+    [SerializeField] float TakeDamage;
     [SerializeField] float fireRate;
     float fireTimer;
 
@@ -46,9 +47,11 @@ public class Player : MonoBehaviour
 
     void Shoot()
     {
+        GameObject ShotLight = Instantiate(ShotLightPrefab);
         GameObject bullet = Instantiate(bulletPrefab);
         bullet.transform.position = bulletSpawn.position;
         bullet.transform.up = transform.up;
+        Destroy(ShotLight, 0.1f);
         Destroy(bullet, 5);
     }
 
