@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,15 +9,18 @@ public class Player : MonoBehaviour
     [SerializeField] Transform target;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] GameObject ShotLightPrefab;
+    [SerializeField] GameObject NightLightPrefab;
     [SerializeField] Transform bulletSpawn;
     [SerializeField] float TakeDamage;
     [SerializeField] float fireRate;
     float fireTimer;
+    float PlayerSpeed;
+    bool nightvisionActive = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        PlayerSpeed = speed;
     }
 
     // Update is called once per frame
@@ -43,6 +47,13 @@ public class Player : MonoBehaviour
                 fireTimer = 0;
             }     
         }
+        if (nightvisionActive == false)
+        {
+            if (Input.GetKeyDown("f"))
+            {
+                NightVision();
+            }
+        }
     }
 
     void Shoot()
@@ -58,5 +69,21 @@ public class Player : MonoBehaviour
     void Move(float horizontal, float vertical)
     {
         transform.position += new Vector3(horizontal, vertical, 0).normalized * speed * Time.deltaTime;
+        if (Input.GetKey("left shift"))
+        {
+            speed = 4f;
+        }
+        else
+        {
+            speed = PlayerSpeed;
+        }
+    }
+
+    void NightVision()
+    {
+        nightvisionActive = true;
+        GameObject nightlight = Instantiate(NightLightPrefab);
+        Destroy(nightlight, 2);
+        nightvisionActive = false;
     }
 }
