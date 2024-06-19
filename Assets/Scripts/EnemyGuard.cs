@@ -58,7 +58,7 @@ public class EnemyGuard : MonoBehaviour
         {
             print("El enemigo ha muerto");
             Destroy(collision.gameObject);
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
 }

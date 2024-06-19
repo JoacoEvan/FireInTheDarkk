@@ -2,6 +2,7 @@ using System.Security.Cryptography;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -85,5 +86,14 @@ public class Player : MonoBehaviour
         GameObject nightlight = Instantiate(NightLightPrefab);
         Destroy(nightlight, 2);
         nightvisionActive = false;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            print("ME MORI AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 }

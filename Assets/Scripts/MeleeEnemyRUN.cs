@@ -46,8 +46,8 @@ public class Meleeenemyguard : MonoBehaviour
         {
             print("El enemigo ha muerto");
             Destroy(collision.gameObject);
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
 
     public void TakeDamage(int damage)

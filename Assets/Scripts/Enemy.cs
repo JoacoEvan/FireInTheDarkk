@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -22,7 +23,12 @@ public class Enemy : MonoBehaviour
         {
             print("El enemigo ha muerto");
             Destroy(collision.gameObject);
-        } 
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            print("TOQUE AL JUGADOR AAAAAAAAAAAAAAAAA");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 }
