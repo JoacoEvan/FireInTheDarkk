@@ -9,6 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/TitleScreen.unity
     guid: 141d884208c6a2c4b8a372ea0d7e04ca
   - enabled: 1
-    path: Assets/Scenes/Level.unity
+    path: Assets/Scenes/Level 1.unity
     guid: c76acee3b59734e4eb9f0b5388da7582
+  - enabled: 1
+    path: Assets/Scenes/Level 2.unity
+    guid: 9dc552a935717e440adefd4024a9731a
+  - enabled: 1
+    path: Assets/Scenes/DeathScreen.unity
+    guid: 9eaf776ba7e618847af2e3d5e56baf78
+  - enabled: 1
+    path: Assets/Scenes/WinScreen.unity
+    guid: f24a5e95ed1f11a46b392bf31f5c575b
   m_configObjects: {}

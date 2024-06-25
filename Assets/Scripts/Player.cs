@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
         if(collision.gameObject.CompareTag("Enemy"))
         {
             print("ME MORI AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene(3);
         }
     }
 }
