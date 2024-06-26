@@ -14,7 +14,10 @@ public class Player : MonoBehaviour
     [SerializeField] Transform bulletSpawn;
     [SerializeField] float TakeDamage;
     [SerializeField] float fireRate;
+    [SerializeField] float nightvisionRate;
+    [SerializeField] AudioSource src;
     float fireTimer;
+    float nightvisionTimer;
     float PlayerSpeed;
     bool nightvisionActive = false;
 
@@ -40,10 +43,12 @@ public class Player : MonoBehaviour
         transform.up = (target.position - transform.position).normalized;
 
         fireTimer += Time.deltaTime;
+        nightvisionTimer += Time.deltaTime;
         if (Input.GetMouseButton(0))
         {
             if(fireTimer >= fireRate)
             {
+                src.Play();
                 Shoot();
                 fireTimer = 0;
             }     
@@ -54,6 +59,7 @@ public class Player : MonoBehaviour
             {
                 NightVision();
             }
+            nightvisionTimer = 0;
         }
     }
 
@@ -94,6 +100,11 @@ public class Player : MonoBehaviour
         {
             print("ME MORI AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             SceneManager.LoadScene(3);
+        }
+        if(collision.gameObject.CompareTag("Blob"))
+        {
+            print("Blob");
+            SceneManager.LoadScene(4);
         }
     }
 }
