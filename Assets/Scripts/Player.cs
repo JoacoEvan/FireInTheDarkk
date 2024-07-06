@@ -94,6 +94,15 @@ public class Player : MonoBehaviour
         nightvisionActive = false;
     }
 
+    /*void OnCollisionEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            print("ME MORI AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            SceneManager.LoadScene(3);
+        }
+    }*/
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Enemy"))

@@ -1,3 +1,4 @@
+using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -25,11 +26,19 @@ public class Bullet : MonoBehaviour
         } 
         Destroy(gameObject);
 
-        if(collision.gameObject.CompareTag("Enemy"))
+        if(collision.gameObject.GetComponent<Meleeenemyguard>())
         {
-            Destroy(collision.gameObject);
+            //Esto no habria que hardcodearlo como "1" sino que habria que crear una variable para cuanto dano hace la bala
+            collision.gameObject.GetComponent<Meleeenemyguard>().TakeDamage(1);
         } 
         Destroy(gameObject);
+
+        /*if(collision.gameObject.CompareTag("Enemy"))
+        {
+            //Esto no habria que hardcodearlo como "1" sino que habria que crear una variable para cuanto dano hace la bala
+            collision.gameObject.GetComponent<Meleeenemyguard>().TakeDamage(1);
+        } 
+        Destroy(gameObject);*/
 
     }
    
