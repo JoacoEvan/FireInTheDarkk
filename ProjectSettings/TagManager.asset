@@ -8,6 +8,8 @@ TagManager:
   - Bullet
   - Enemy
   - Blob
+  - Spikes
+  - PowerUp
   layers:
   - Default
   - TransparentFX

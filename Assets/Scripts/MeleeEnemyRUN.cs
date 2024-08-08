@@ -17,6 +17,7 @@ public class Meleeenemyguard : MonoBehaviour
     [SerializeField] SpriteRenderer rend;
     [SerializeField] GameObject Enemy;
     [SerializeField] GameObject DeadEnemy;
+    [SerializeField] GameObject Triggerinho;
 
     private void Start()
     {
@@ -50,6 +51,7 @@ public class Meleeenemyguard : MonoBehaviour
             aipath.canMove = false;
             DeadEnemy.SetActive(true);
             Enemy.SetActive(false);
+            Triggerinho.SetActive(false);
             //Destroy (gameObject);
         }
     }

@@ -10,21 +10,34 @@ public class Player : MonoBehaviour
     [SerializeField] Transform target;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] GameObject ShotLightPrefab;
-    [SerializeField] GameObject NightLightPrefab;
+    [SerializeField] GameObject FlarePrefab;
     [SerializeField] Transform bulletSpawn;
+    [SerializeField] Transform grenadeSpawn;
     [SerializeField] float TakeDamage;
-    [SerializeField] float fireRate;
-    [SerializeField] float nightvisionRate;
+    public float fireRate;
     [SerializeField] AudioSource src;
+    [SerializeField] AudioSource src2;
+    [SerializeField] AudioSource src3;
+    [SerializeField] AudioSource src4;
+    [SerializeField] AudioSource src5;
+    [SerializeField] int maxAmmo = 15;
+    [SerializeField] int currentAmmo;
+    [SerializeField] int flaresAmmo = 3;
+    [SerializeField] int currentFlares;
+    [SerializeField] float reloadTime = 2f;
+    [SerializeField] float reloadTimer;
+    [SerializeField] float powerUpTimer;
     float fireTimer;
-    float nightvisionTimer;
+    float reloadTiminginhopowerupinho = 2f;
     float PlayerSpeed;
-    bool nightvisionActive = false;
+    public float throwForce = 40f;
 
     // Start is called before the first frame update
     void Start()
     {
         PlayerSpeed = speed;
+        currentAmmo = maxAmmo;
+        currentFlares = flaresAmmo;
     }
 
     // Update is called once per frame
@@ -41,25 +54,56 @@ public class Player : MonoBehaviour
         target.position = new Vector3(mousePos.x, mousePos.y, transform.position.z);
 
         transform.up = (target.position - transform.position).normalized;
-
+        reloadTimer += Time.deltaTime;
         fireTimer += Time.deltaTime;
-        nightvisionTimer += Time.deltaTime;
-        if (Input.GetMouseButton(0))
+        if(reloadTimer > reloadTiminginhopowerupinho)
         {
-            if(fireTimer >= fireRate)
+            if(currentAmmo > 0)
             {
-                src.Play();
-                Shoot();
-                fireTimer = 0;
-            }     
-        }
-        if (nightvisionActive == false)
-        {
-            if (Input.GetKeyDown("f"))
-            {
-                NightVision();
+                if (Input.GetMouseButton(0))
+                {
+                    if(fireTimer >= fireRate)
+                    {
+                        src.Play();
+                        Shoot();
+                        fireTimer = 0;
+                    }     
+                }
             }
-            nightvisionTimer = 0;
+            else
+            {
+                if (Input.GetMouseButton(0))
+                {
+                    if(fireTimer >= fireRate)
+                    {
+                        src2.Play();
+                        fireTimer = 0;
+                    }     
+                }
+            }
+            if(Input.GetKey("r"))
+            {
+                src3.Play();
+                StartCoroutine(Reload());
+                return;
+            }
+        }
+        if(Input.GetKeyDown("g") && currentFlares > 0)
+        {
+            src5.Play();
+            currentFlares--;
+            Grenade();
+        }
+        if(fireRate == 0.1f)
+        {
+            powerUpTimer += Time.deltaTime;
+            if(powerUpTimer > 5)
+            {
+                print("devolvendo o fireratinho");
+                fireRate = 0.3f;
+                reloadTime = 2f;
+                reloadTiminginhopowerupinho = 2f;
+            }
         }
     }
 
@@ -67,10 +111,29 @@ public class Player : MonoBehaviour
     {
         GameObject ShotLight = Instantiate(ShotLightPrefab);
         GameObject bullet = Instantiate(bulletPrefab);
+        currentAmmo--;
         bullet.transform.position = bulletSpawn.position;
         bullet.transform.up = transform.up;
         Destroy(ShotLight, 0.1f);
         Destroy(bullet, 5);
+    }
+
+    void Grenade()
+    {
+        GameObject flare = Instantiate(FlarePrefab);
+        flare.transform.position = grenadeSpawn.position;
+        flare.transform.up = transform.up;
+        //Rigidbody rb = flare.GetComponent<Rigidbody>();
+        //rb.AddForce(transform.up * throwForce, ForceMode.VelocityChange);
+    }
+
+    IEnumerator Reload()
+    {
+        print("reloading...");
+        reloadTimer = 0;
+        yield return new WaitForSeconds(reloadTime);
+        src4.Play();
+        currentAmmo = maxAmmo;
     }
 
     void Move(float horizontal, float vertical)
@@ -86,26 +149,14 @@ public class Player : MonoBehaviour
         }
     }
 
-    void NightVision()
-    {
-        nightvisionActive = true;
-        GameObject nightlight = Instantiate(NightLightPrefab);
-        Destroy(nightlight, 2);
-        nightvisionActive = false;
-    }
-
-    /*void OnCollisionEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Enemy"))
         {
             print("ME MORI AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             SceneManager.LoadScene(3);
         }
-    }*/
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.CompareTag("Enemy"))
+        if(collision.gameObject.CompareTag("Spikes"))
         {
             print("ME MORI AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             SceneManager.LoadScene(3);
@@ -114,6 +165,14 @@ public class Player : MonoBehaviour
         {
             print("Blob");
             SceneManager.LoadScene(4);
+        }
+        if(collision.gameObject.CompareTag("PowerUp"))
+        {
+            print("seu triggereou o triggerinho");
+            fireRate = 0.1f;
+            reloadTime = 0.5f;
+            reloadTiminginhopowerupinho = 0.5f;
+            Destroy(collision.gameObject);
         }
     }
 }

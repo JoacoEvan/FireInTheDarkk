@@ -23,22 +23,28 @@ public class Bullet : MonoBehaviour
         if(collision.gameObject.CompareTag("Destructible"))
         {
             Destroy(collision.gameObject);
+            Destroy(gameObject);
         } 
-        Destroy(gameObject);
 
-        if(collision.gameObject.GetComponent<Meleeenemyguard>())
+        /*if(collision.gameObject.GetComponent<Meleeenemyguard>())
         {
             //Esto no habria que hardcodearlo como "1" sino que habria que crear una variable para cuanto dano hace la bala
             collision.gameObject.GetComponent<Meleeenemyguard>().TakeDamage(1);
-        } 
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }*/
 
-        /*if(collision.gameObject.CompareTag("Enemy"))
+        if(collision.gameObject.GetComponent<RangedEnemy>())
+        {
+            //Esto no habria que hardcodearlo como "1" sino que habria que crear una variable para cuanto dano hace la bala
+            collision.gameObject.GetComponent<RangedEnemy>().TakeDamage(1);
+        } 
+
+        if(collision.gameObject.CompareTag("Enemy"))
         {
             //Esto no habria que hardcodearlo como "1" sino que habria que crear una variable para cuanto dano hace la bala
             collision.gameObject.GetComponent<Meleeenemyguard>().TakeDamage(1);
+            Destroy(gameObject);
         } 
-        Destroy(gameObject);*/
 
     }
    
